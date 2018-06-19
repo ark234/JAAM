@@ -1,0 +1,25 @@
+{
+  "name": "jaam",
+  "version": "1.0.0",
+  "description": "DeveloperWeek NYC Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ark234/JAAM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ark234/JAAM/issues"
+  },
+  "homepage": "https://github.com/ark234/JAAM#readme",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.0.0",
+    "firebase": "^5.0.4",
+    "moment": "^2.22.2"
+  }
+}
