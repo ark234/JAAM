@@ -12,18 +12,27 @@
 	NEW ISSUE PAGE
 	<form class="form" id="issueform">
 		<div class="issue-type">
-			<input type="text" class="" id="issue-type" name="type" required>
-			<label class="label" for="issue-input">Type</label>
+			<!-- <label class="label" for="issue-input">Type</label> -->
+			<br>
+			<select id="issue" name="issue" required>
+			<option value="undefined">Select Issue Type</option>
+      <option value="pothole">Pothole</option>
+      <option value="flooding">Flooding</option>
+      <option value="sidewalk">Obstructed Sidewalk</option>
+			<option value="litter">Litter</option>
+    </select>
 		</div>
 		<div class="Location">
-			<input type="text" class="" id="location" name="location" required>
-			<label class="label" for="location">Address</label>
+			<input type="text" class="text-field" id="location" name="location" placeholder="Address" required>
+			<!-- <label class="label" for="location">Address</label> -->
 		</div>
+		<br>
 		<div class="Description">
-			<label class="label" for="location">Description</label>
-			<textarea type="textarea" class="" id="description" name="description" max-length"300" required>
+			<!-- <label class="label" for="location">Description</label> -->
+			<textarea type="textarea" class="text-area" id="description" name="description" max-length"300" placeholder="Description" required>
 			</textarea>
 		</div>
+		<br>
 		<div class="button-container">
 			<button type="button" class="cancel">
 				Cancel
