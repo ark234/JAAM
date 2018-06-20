@@ -1,11 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+<html class='use-all-space'>
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel='stylesheet' type='text/css' href='../styles/master.css'/>
-	<title>Login</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta charset='UTF-8'>
+  
+  <meta name='viewport'
+        content='width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no'/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' type='text/css' href='../sdk/map.css'/>
+  <link rel='stylesheet' type='text/css' href='../styles/elements.css'/>
+  <link rel='stylesheet' type='text/css' href='../styles/master.css'/>
+  <script type='text/javascript' src='../scripts/form.js'></script>
+  <script type='text/javascript' src='../sdk/tomtom.min.js'></script>
+	<title>Report Issue</title>
+  <style>
+        .icon-locate_me_btn {
+            cursor: pointer;
+            width: 34px;
+            height: 34px;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,6 +49,40 @@
 			</button>
 		</div>
 	</form>
+  <div id='map' class='use-all-space'></div>
+  <script>
+        console.log(tomtom);
+        // Define your product name and version
+        tomtom.setProductInfo('JAAM', '4.29.0');
+        var map, marker;
+        // Setting TomTom keys
+        tomtom.key("H897MbupgR1ORMradXr9YYNsdw9ajA7X");
+        tomtom.searchKey("H897MbupgR1ORMradXr9YYNsdw9ajA7X");
+
+        //Creating the map
+        map = tomtom.L.map('map', {
+            source: 'raster',
+            basePath: '../sdk'
+        }).setView([52.373154, 4.890659], 14);
+
+        // Adding marker to the map
+        marker = tomtom.L.marker([52.373154, 4.890659], {
+            draggable: true
+        }).bindPopup('Amsterdam').addTo(map);
+
+        // Show popup each time the marker is moved
+        marker.on('dragend', function(e) {
+            tomtom.reverseGeocode({position: e.target.getLatLng()})
+                .go(function(response) {
+                    if (response && response.address && response.address.freeformAddress) {
+                        marker.setPopupContent(response.address.freeformAddress);
+                    } else {
+                        marker.setPopupContent('No results found');
+                    }
+                    marker.openPopup();
+                });
+        });
+    </script>
 </body>
 
 </html>
