@@ -127,13 +127,15 @@
 			tomtom.reverseGeocode({ position: e.target.getLatLng() })
 				.go(function (response) {
 					if (response && response.address && response.address.freeformAddress) {
-						marker.setPopupContent(response.address.freeformAddress + ` Report new issue`);
+						marker.setPopupContent(` REPORT AN ISSUE AT:` + `<br />` + response.address.freeformAddress);
 					} else {
 						marker.setPopupContent('No results found');
 					}
 					marker.openPopup();
 				});
+				console.log('popup', e.target._popup)
 		});
+	
 
 
 		map.addControl(new FindLocationControl());
