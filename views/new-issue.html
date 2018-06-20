@@ -5,11 +5,11 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel='stylesheet' type='text/css' href='../public/css/master.css' />
+	<link rel='stylesheet' type='text/css' href='/css/master.css' />
 	<title>New Issue</title>
 	<link rel='stylesheet' type='text/css' href='../sdk/map.css' />
-	<link rel='stylesheet' type='text/css' href='../public/css/elements.css' />
-	<script type='text/javascript' src='../public/scripts/form.js'></script>
+	<link rel='stylesheet' type='text/css' href='/css/elements.css' />
+	<script type='text/javascript' src='/scripts/form.js'></script>
 	<script type='text/javascript' src='../sdk/tomtom.min.js'></script>
 	<style>
 		.icon-locate_me_btn {
@@ -23,35 +23,36 @@
 <body class='use-all-space'>
 	NEW ISSUE PAGE
 	<form class="form" id="issueform">
- 		<div class="issue-type">
+		<div class="issue-type">
 			<input type="text" class="" id="issue-type" name="type" required>
-		<br>
+			<br>
 			<select id="issue" name="issue" required>
-			<option value="undefined">Select Issue Type</option>
-      <option value="pothole">Pothole</option>
-      <option value="flooding">Flooding</option>
-      <option value="sidewalk">Obstructed Sidewalk</option>
-			<option value="litter">Litter</option>
-    </select>
- 		</div>
- 		<div class="Location">
+				<option value="undefined">Select Issue Type</option>
+				<option value="pothole">Pothole</option>
+				<option value="flooding">Flooding</option>
+				<option value="sidewalk">Obstructed Sidewalk</option>
+				<option value="litter">Litter</option>
+			</select>
+		</div>
+		<div class="Location">
 			<input type="text" class="text-field" id="location" name="location" placeholder="Address" required>
- 		</div>
+		</div>
 		<br>
- 		<div class="Description">
-			<textarea type="textarea" class="text-area" id="description" name="description" max-length"300" placeholder="Description" required>
+		<div class="Description">
+			<textarea type="textarea" class="text-area" id="description" name="description" max-length "300" placeholder="Description"
+			 required>
  			</textarea>
- 		</div>
+		</div>
 		<br>
- 		<div class="button-container">
- 			<button type="button" class="cancel">
- 				Cancel
- 			</button>
- 			<button class="submit">
- 				Submit
- 			</button>
- 		</div>
- 	</form>
+		<div class="button-container">
+			<button type="button" class="cancel">
+				Cancel
+			</button>
+			<button class="submit">
+				Submit
+			</button>
+		</div>
+	</form>
 	<div id='map' class='use-all-space'></div>
 	<script>
 		// Define your product name and version
