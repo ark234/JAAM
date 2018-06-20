@@ -4,11 +4,35 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel='stylesheet' type='text/css' href='../styles/master.css'/>
 	<title>Login</title>
 </head>
 
 <body>
 	NEW ISSUE PAGE
+	<form class="form" id="issueform">
+		<div class="issue-type">
+			<input type="text" class="" id="issue-type" name="type" required>
+			<label class="label" for="issue-input">Type</label>
+		</div>
+		<div class="Location">
+			<input type="text" class="" id="location" name="location" required>
+			<label class="label" for="location">Address</label>
+		</div>
+		<div class="Description">
+			<label class="label" for="location">Description</label>
+			<textarea type="textarea" class="" id="description" name="description" max-length"300" required>
+			</textarea>
+		</div>
+		<div class="button-container">
+			<button type="button" class="cancel">
+				Cancel
+			</button>
+			<button class="submit">
+				Submit
+			</button>
+		</div>
+	</form>
 </body>
 
 </html>
