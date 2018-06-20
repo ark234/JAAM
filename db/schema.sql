@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS issuess;
+
+CREATE TABLE users (
+  id BIGSERIAL PRIMARY KEY,
+  username VARCHAR NOT NULL UNIQUE,
+  email VARCHAR NOT NULL UNIQUE,
+  password_digest VARCHAR NOT NULL
+);
+
+CREATE TABLE issues (
+  id BIGSERIAL PRIMARY KEY,
+  user_id INTEGER REFERENCES users (id) NOT NULL,
+  title VARCHAR NOT NULL,
+  descritpion VARCHAR NOT NULL,
+  LOCATION VARCHAR NOT NULL,
+  date_opened TIMESTAMP NOT NULL,
+  date_closed TIMESTAMP,
+);
+
