@@ -127,7 +127,7 @@
 			tomtom.reverseGeocode({ position: e.target.getLatLng() })
 				.go(function (response) {
 					if (response && response.address && response.address.freeformAddress) {
-						marker.setPopupContent(` REPORT AN ISSUE AT:` + `<br />` + response.address.freeformAddress);
+						marker.setPopupContent(` <a href=''>REPORT AN ISSUE AT: </a>` + `<br />` + response.address.freeformAddress);
 					} else {
 						marker.setPopupContent('No results found');
 					}
