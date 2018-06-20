@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="/css/master.css">
+	<title>Sign Up</title>
+</head>
+
+<body>
+	<main id="main-container">
+		<section id="register">
+			<h1>Registration</h1>
+			<form action="/users" method="post">
+				<label for="username">Username</label>
+				<br>
+				<input type="text" id="username" name="user[username]">
+				<br>
+				<label for="password">Password</label>
+				<br>
+				<input type="password" id="password" name="user[password]">
+				<br>
+				<br>
+				<label for="email">Email</label>
+				<br>
+				<input type="text" id="email" name="user[email]">
+				<br>
+				<label for="phone">Phone</label>
+				<br>
+				<input type="text" id="phone" name="user[phone]">
+				<br>
+				<label for="zip">Zip Code</label>
+				<br>
+				<input type="text" id="zip" name="user[zip]">
+				<br>
+				<button id="signup-btn">Register</button>
+			</form>
+			<div id="login">
+				<a href="/users/login">Login</a>
+			</div>
+		</section>
+		<section class="footer">
+			<a class="gh" href="https://github.com/ark234/JAAM"></a>
+		</section>
+	</main>
+</body>
+
+</html>
