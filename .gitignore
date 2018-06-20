@@ -1,6 +1,3 @@
-# SDK
-sdk
-
 # Logs
 logs
 *.log
@@ -38,6 +35,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+sdk/
 
 # TypeScript v1 declaration files
 typings/
