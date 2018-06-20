@@ -45,7 +45,7 @@
 			</button>
 		</div>
 	</form>
-	<div id='map' class='use-all-space'></div>
+	<div id='map' class='use-all-space map-container'></div>
 	<script>
 		// Define your product name and version
 		tomtom.setProductInfo('JAAM', '4.29.0');
@@ -120,7 +120,7 @@
 			tomtom.reverseGeocode({ position: e.target.getLatLng() })
 				.go(function (response) {
 					if (response && response.address && response.address.freeformAddress) {
-						marker.setPopupContent(response.address.freeformAddress + ` Report new issue`);
+						marker.setPopupContent(` REPORT NEW ISSUE at:` + `</br>` + response.address.freeformAddress);
 					} else {
 						marker.setPopupContent('No results found');
 					}
