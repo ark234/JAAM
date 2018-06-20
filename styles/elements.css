@@ -116,15 +116,15 @@
     color: white;
     font-weight: bold;
     line-height: normal;
-    border: none; 
+    border: none;
     border-radius: 5px;
     margin-top: 10px;
     cursor: pointer;
-    height: 30px !important;    
+    height: 30px !important;
     width: 100%;
 }
 .sidepanel input[type=submit]:hover,
-.sidepanel input[type=button]:hover {  
+.sidepanel input[type=button]:hover {
     color: #ddd;
 }
 
@@ -351,7 +351,7 @@ label.checkbox-label  {
 }
 
 div.leaflet-container .leaflet-control-zoomslider {
-    margin-left: 14px;
+    margin-right: 14px;
 }
 
 /* Rome date-time picker */
