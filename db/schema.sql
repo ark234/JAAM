@@ -16,6 +16,6 @@ CREATE TABLE issues (
   descritpion VARCHAR NOT NULL,
   LOCATION VARCHAR NOT NULL,
   date_opened TIMESTAMP NOT NULL,
-  date_closed TIMESTAMP,
+  date_closed TIMESTAMP
 );
 

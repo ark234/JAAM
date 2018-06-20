@@ -99,10 +99,4 @@ router.delete('/account/:userId', auth.restrict, User.deleteAccount, (req, res, 
 	res.json({});
 });
 
-// Update current user location
-router.put('/:userId', auth.restrict, User.updateLocation, (req, res, next) => {
-	console.log('route hit.');
-	res.json(res.locals.updatedUserData);
-});
-
 module.exports = router;
