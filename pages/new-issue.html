@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<html class='use-all-space'>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel='stylesheet' type='text/css' href='../styles/master.css'/>
 	<title>Login</title>
+  <link rel='stylesheet' type='text/css' href='../sdk/map.css'/>
+  <link rel='stylesheet' type='text/css' href='../styles/elements.css'/>
+  <script type='text/javascript' src='../scripts/form.js'></script>
+  <script type='text/javascript' src='../sdk/tomtom.min.js'></script>
+  <style>
+      .icon-locate_me_btn {
+          cursor: pointer;
+          width: 34px;
+          height: 34px;
+      }
+    </style>
 </head>
 
-<body>
+<body class='use-all-space'>
 	NEW ISSUE PAGE
 	<form class="form" id="issueform">
 		<div class="issue-type">
@@ -33,6 +44,81 @@
 			</button>
 		</div>
 	</form>
+  <div id='map' class='use-all-space'></div>
+    <script>
+        // Define your product name and version
+        tomtom.setProductInfo('JAAM', '4.29.0');
+        tomtom.searchKey('p47tlEh7zt7GHP3ZfnMFG6gEbj1Xxhfd');
+        // Creating map
+        var map = tomtom.L.map('map', {
+            key: "H897MbupgR1ORMradXr9YYNsdw9ajA7X",
+            source: 'raster',
+            basePath: '../sdk'
+        });
+
+        // Creating Find Location widget
+        var FindLocationControl = tomtom.L.Control.extend({
+            onAdd: function(map) {
+                var container = L.DomUtil.create('div', 'leaflet-control'),
+                    btn = L.DomUtil.create('div', 'icon-locate_me_btn', container);
+                btn.role = 'button';
+                btn.title = 'Click me to locate you';
+                btn.onclick = function() {
+                    map.locate({setView: true, maxZoom: 15});
+                };
+                map.on('locationfound', this.displayMarker, this);
+                map.on('locationerror', this.showLocationErrorMessage, this);
+                return container;
+            },
+            onRemove: function(map) {
+                map.off('locationfound', this.displayMarker, this);
+                console.log('map', map)
+                map.off('locationerror', this.showLocationErrorMessage, this);
+            },
+            displayMarker: function(evt) {
+                if (this._marker) {
+                    this._marker.setLatLng(evt.latlng);
+                    //console.log('latlng: ', latlng)
+                    return;
+                }
+                this._marker = L.marker(evt.latlng, {
+
+                    title: 'Your current location',
+                    icon: L.svgIcon({
+                        background: {
+                            icon: 'icon-locate_me_btn',
+                            iconSize: [30, 30],
+                            iconAnchor: [15, 15]
+                        },
+                        icon: null,
+                        opacity: 1
+                    })
+                }).addTo(this._map);
+            },
+            showLocationErrorMessage: function() {
+                tomtom.messageBox({closeAfter: 3000})
+                    .setContent('Could not find your location')
+                    .openOn(this._map);
+            }
+        });
+
+        marker = tomtom.L.marker([40.7282083, -73.9577655], {
+            draggable: true
+        }).bindPopup('Amsterdam').addTo(map);
+        // Show popup each time the marker is moved
+        marker.on('dragend', function(e) {
+            tomtom.reverseGeocode({position: e.target.getLatLng()})
+                .go(function(response) {
+                    if (response && response.address && response.address.freeformAddress) {
+                        marker.setPopupContent(response.address.freeformAddress);
+                    } else {
+                        marker.setPopupContent('No results found');
+                    }
+                    marker.openPopup();
+                });
+        });
+        map.addControl(new FindLocationControl());
+    </script>
 </body>
 
 </html>
