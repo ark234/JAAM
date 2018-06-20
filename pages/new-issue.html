@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel='stylesheet' type='text/css' href='../styles/master.css'/>
-	<title>Login</title>
+	<title>New Issue</title>
   <link rel='stylesheet' type='text/css' href='../sdk/map.css'/>
   <link rel='stylesheet' type='text/css' href='../styles/elements.css'/>
   <script type='text/javascript' src='../scripts/form.js'></script>
@@ -51,12 +51,15 @@
         tomtom.searchKey('p47tlEh7zt7GHP3ZfnMFG6gEbj1Xxhfd');
         // Creating map
         var map = tomtom.L.map('map', {
+            center: [40.7282083, -73.9577655],
+            zoom: 12,
             key: "H897MbupgR1ORMradXr9YYNsdw9ajA7X",
             source: 'raster',
             basePath: '../sdk'
         });
 
         // Creating Find Location widget
+        var latitude, longitude;
         var FindLocationControl = tomtom.L.Control.extend({
             onAdd: function(map) {
                 var container = L.DomUtil.create('div', 'leaflet-control'),
@@ -76,8 +79,13 @@
                 map.off('locationerror', this.showLocationErrorMessage, this);
             },
             displayMarker: function(evt) {
+                console.log('evt: ', evt)
+                latitude = evt.latitude;
+                longitude = evt.longitude;
+                console.log('lat:', latitude, 'long:', longitude)
                 if (this._marker) {
                     this._marker.setLatLng(evt.latlng);
+                    this._marker.addEventListener
                     //console.log('latlng: ', latlng)
                     return;
                 }
@@ -101,22 +109,25 @@
                     .openOn(this._map);
             }
         });
-
+        
         marker = tomtom.L.marker([40.7282083, -73.9577655], {
             draggable: true
-        }).bindPopup('Amsterdam').addTo(map);
+        }).bindPopup('').addTo(map);
         // Show popup each time the marker is moved
         marker.on('dragend', function(e) {
+            console.log('e', e)
             tomtom.reverseGeocode({position: e.target.getLatLng()})
                 .go(function(response) {
                     if (response && response.address && response.address.freeformAddress) {
-                        marker.setPopupContent(response.address.freeformAddress);
+                        marker.setPopupContent(response.address.freeformAddress + ` Report new issue`);
                     } else {
                         marker.setPopupContent('No results found');
                     }
                     marker.openPopup();
                 });
-        });
+          });
+        
+        
         map.addControl(new FindLocationControl());
     </script>
 </body>
